@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="/neol/noel.css">
+    <link rel="stylesheet" href="noel.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@200&family=Playwrite+NL+Guides&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -10,7 +10,7 @@
     <title>Document</title>
 </head>
 <body>
-<!--    
+   
 
     <div class="start-screen">
         <button id="startButton">Start</button>
@@ -19,7 +19,7 @@
     <div class="loading-screen hidden">
         <div class="video-container">
             <video id="loadingVideo" autoplay muted playsinline>
-                <source src="/neol/video/6133927042918.mp4" type="video/mp4">
+                <source src="video/6133927042918.mp4" type="video/mp4">
             </video>
         </div>
         <div class="progress-bar">
@@ -27,11 +27,11 @@
         </div>
     </div>
 
-    <div class="main-content hidden"> -->
+    <div class="main-content hidden">
 
         <header>
             <audio id="backgroundMusic" preload="auto">
-                <source src="/neol/Music/HoaNhipGiangSinh-MIN-6176611.mp3" type="audio/mp3">
+                <source src="Music/HoaNhipGiangSinh-MIN-6176611.mp3" type="audio/mp3">
             </audio>
             <button id="audioControl" class="audio-btn">🔊</button>
             <div class="snowfallLayer snowfallHidden"></div>
@@ -52,9 +52,33 @@
             </div>
         </header>
         <main>
-            
+            <div class="page-wrapper">
+                <div class="card">
+                  <div class="card-packaging bg-img-base" style="background-image: url('/img/thiep-giang-sinh-chuc-mung-ban-be-2.jpg')">
+                    <div class="card-center">
+                      <a class="close bg-img-base" href="#" style="background-image: url(https://cdn3.iconfinder.com/data/icons/pyconic-icons-1-2/512/close-circle-512.png)"></a>
+                    </div>
+                    <div class="card--first">
+                      <div class="card-wrapper bg-img-base front" style="background-image: url(https://media1.giphy.com/media/FrfvK9FJUynFC/giphy.gif?cid=790b76115cd8c25f434d444955e4a1a0&rid=giphy.gif)">
+                        <a class="open" href="#">
+                          <div class="open-tail"></div>
+                          <div class="open-main"><span class="open-title">Open</span></div>
+                        </a>
+                      </div>
+                      <div class="card-wrapper bg-img-base back" style="background-image: url('/img/Ảnh chụp màn hình 2024-12-18 125724.png');">
+                      </div>
+                    </div>
+                    <div class="card--third">
+                      <div class="card-wrapper bg-img-base front" style="background-image: url('https://media2.giphy.com/media/eCxL0w1RAh9iE/giphy.gif?cid=790b76115cd8c2f874725a6b730f98a1&rid=giphy.gif');">
+                      </div>
+                      <div class="card-wrapper bg-img-base back" style="background-image: url('/img/Ảnh chụp màn hình 2024-12-18 125724.png');">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
         </main>
     </div>
-    <script src="/neol/noel.js"></script>
+    <script src="noel.js"></script>
 </body>
 </html>

@@ -1,5 +1,5 @@
 body {
-  background-color: #ff3636;
+    background: linear-gradient(to bottom right, #dc2626, #ef4444, #f87171);
 }
 header {
     z-index: 1000;
@@ -276,7 +276,6 @@ header {
     margin: 0 auto;
     width: 90%;
     max-width: 800px;
-    height: 200px;
     background-position: center center;
     background-size: 1000px 200px;
     border-radius: 10px;
@@ -376,7 +375,7 @@ header {
     .fire-container {
         position: relative;
         width: 100%;
-        height: 50vh;
+        height: 25vh;
     }
 
     .christmas-tree {
@@ -390,4 +389,156 @@ header {
     .Blazing {
         font-size: 60px;
     }
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.bg-img-base {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.page-wrapper {
+  margin-top: 9rem;
+  padding-top: 100px;
+  min-height: 100vh;
+}
+
+.card-center {
+  position: relative;
+  min-height: 250px;
+}
+
+.card-packaging {
+  width: 60%;
+  display: block;
+  margin: 0 auto;
+  position: relative;
+  min-height: 250px;
+  box-shadow: 0 0 6px 2px #926c6c;
+}
+
+.card .open {
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: -7px;
+  transition: .3s;
+  border-bottom: 1px solid white;
+  border-top: 1px solid white;
+}
+
+.card .open:hover {
+  right: -10px;
+  transition: .3s;
+}
+
+.card .open-tail {
+  position: relative;
+  height: 36px;
+  width: 30px;
+  float: left;
+}
+
+.card .open-tail:before {
+  content: '';
+  display: block;
+  border-top: 18px solid #d24242;
+  border-left: 30px solid transparent;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.card .open-tail:after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 18px;
+  left: 0;
+  border-top: 18px solid transparent;
+  border-right: 30px solid #d24242;
+}
+
+.card .open-main {
+  display: inline-block;
+  line-height: 36px;
+  background: #d24242;
+  padding: 0 3px 0 0;
+}
+
+.card .open-title {
+  display: inline-block;
+  line-height: 30px;
+  border-top: 1px dashed white;
+  border-bottom: 1px dashed white;
+  padding: 0 15px;
+  color: white;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.card--first,
+.card--third {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  transform-origin: left;
+  transition: all .9s;
+  transform-style: preserve-3d;
+  z-index: 2;
+  box-shadow: 2px 0 6px 2px #926c6c;
+}
+
+.card--first {
+  transition-delay: .4s;
+}
+
+.card--third {
+  z-index: 1;
+  transform-origin: right;
+  transition: all .9s;
+  box-shadow: -2px 0 6px 2px #926c6c;
+}
+
+.card-packaging.is-open .card--first {
+  transform: rotateY(180deg);
+  transition: all .9s;
+}
+
+.card-packaging.is-open .card--third {
+  transform: rotateY(180deg);
+  transition: all .9s;
+  transition-delay: .4s;
+}
+
+.card-wrapper {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  padding: 15px 25px;
+}
+
+.card-wrapper.back {
+  transform: rotateY(180deg);
+}
+
+.close {
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  position: absolute;
+  top: 10px;
+  right: 10px;
 }

@@ -55,6 +55,14 @@ function initializeLoadingSequence() {
             // Hiển thị các hiệu ứng trong main-content
             snowfallLayer.classList.remove('snowfallHidden');
             
+            // Tự động phát nhạc khi loading xong
+            backgroundMusic.play()
+                .then(() => {
+                    audioControl.textContent = '🔊';
+                    audioControl.classList.remove('muted');
+                })
+                .catch(error => console.log("Autoplay prevented:", error));
+            
             setTimeout(() => {
                 startScreen.remove();
                 loadingScreen.remove();
@@ -128,22 +136,7 @@ function createChristmasTree() {
 
 // Thêm hàm xử lý audio
 function setupAudio() {
-    let isPlaying = false;
-
-    // Tự động phát nhạc khi trang load xong
-    window.addEventListener('load', function() {
-        setTimeout(() => {
-            backgroundMusic.play()
-                .then(() => {
-                    isPlaying = true;
-                    audioControl.textContent = '🔊';
-                    audioControl.classList.remove('muted');
-                })
-                .catch((error) => {
-                    console.log("Autoplay prevented:", error);
-                });
-        }, 1000); // Delay 1s để đảm bảo trang đã load xong
-    });
+    let isPlaying = true;
 
     // Xử lý click vào nút audio
     audioControl.addEventListener('click', function() {
@@ -171,3 +164,13 @@ function setupAudio() {
     // Thêm thuộc tính loop
     backgroundMusic.loop = true;
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementsByClassName('open')[0].addEventListener('click', function () {
+      document.getElementsByClassName('card-packaging')[0].classList.add('is-open')
+    })
+  
+    document.getElementsByClassName('close')[0].addEventListener('click', function () {
+      document.getElementsByClassName('card-packaging')[0].classList.remove('is-open')
+    })
+  });
