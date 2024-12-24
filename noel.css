@@ -1,5 +1,5 @@
 body {
-    background: linear-gradient(to bottom right, #dc2626, #ef4444, #f87171);
+    background:#FF0000;
 }
 header {
     z-index: 1000;
@@ -15,6 +15,7 @@ header {
     overflow: hidden;
     pointer-events: none;
     opacity: 1;
+    
 }
 
 .snowflake {
@@ -65,21 +66,23 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #fff;
-    z-index: 9999;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 10000;
 }
 
 #startButton {
     font-family: 'Poppins', sans-serif;
-    font-size: 20px;
+    font-size: 24px;
     font-weight: 600;
     color: #fff;
     background-color: #f20000;
-    padding: 10px 20px;
+    padding: 15px 30px;
     border-radius: 10px;
     border: none;
     cursor: pointer;
     transition: all 0.3s ease;
+    z-index: 10001;
+    position: relative;
 }
 
 #startButton:hover {
@@ -95,12 +98,11 @@ header {
     width: 100%;
     height: 100%;
     background-color: #fff;
-    display: flex;
+    display: none;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     z-index: 9999;
-    transition: opacity 0.5s;
 }
 
 .video-container {
@@ -143,15 +145,24 @@ header {
 
 /* Main content styles */
 .main-content {
+    display: none;
     opacity: 1;
     transition: opacity 0.5s;
+    position: relative;
+    z-index: 1;
+}
+
+.main-content.visible {
+    display: block;
+    opacity: 1;
 }
 
 /* Hidden states */
 .hidden {
-    display: none;
+    display: none !important;
     opacity: 0;
     pointer-events: none;
+    visibility: hidden;
 }
 
 .start-screen.hidden {
@@ -170,87 +181,6 @@ header {
     display: none;
     opacity: 0;
     pointer-events: none;
-}
-
-/* Container cho Christmas Tree */
-.tree-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 50%;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.christmas-tree {
-    position: relative;
-    transform: translate(0, 0) scale(0.8);
-    transform-style: preserve-3d;
-    animation: rotate 20s infinite linear;
-    z-index: 9999;
-    pointer-events: none;
-}
-
-.lights {
-    position: absolute;
-    width: 6px;
-    height: 6px;
-    background: radial-gradient(circle at 50% 50%, #fff, transparent 50%);
-    border-radius: 50%;
-    transform-style: preserve-3d;
-    opacity: 1;
-}
-
-.star {
-    position: absolute;
-    top: -30px;
-    left: -15px;
-    width: 30px;
-    height: 30px;
-    background: #FFD700;
-    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-    animation: starTwinkle 1.5s infinite ease-in-out;
-    opacity: 1;
-    box-shadow: 0 0 20px #FFD700;
-}
-
-@keyframes rotate {
-    from {
-        transform: translate(0, 0) rotateY(0deg);
-    }
-    to {
-        transform: translate(0, 0) rotateY(360deg);
-    }
-}
-
-@keyframes starTwinkle {
-    0%, 100% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.2);
-    }
-}
-
-/* Light colors */
-.lights:nth-child(3n) {
-    background: radial-gradient(circle at 50% 50%, #ff3333, transparent 50%);
-    box-shadow: 0 0 15px #ff0000, 0 0 25px #ff0000;
-    opacity: 1;
-}
-
-.lights:nth-child(3n+1) {
-    background: radial-gradient(circle at 50% 50%, #33ff33, transparent 50%);
-    box-shadow: 0 0 15px #00ff00, 0 0 25px #00ff00;
-    opacity: 1;
-}
-
-.lights:nth-child(3n+2) {
-    background: radial-gradient(circle at 50% 50%, #3333ff, transparent 50%);
-    box-shadow: 0 0 15px #0000ff, 0 0 25px #0000ff;
-    opacity: 1;
 }
 
 /* Container cho Dark Fire */
@@ -376,10 +306,6 @@ header {
         position: relative;
         width: 100%;
         height: 25vh;
-    }
-
-    .christmas-tree {
-        transform: translate(0, 0) scale(0.6);
     }
 
     .fire {
@@ -541,4 +467,31 @@ header {
   position: absolute;
   top: 10px;
   right: 10px;
+}
+
+/* Thêm style cho tree video */
+.tree {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+    padding: 20px;
+}
+
+.tree video {
+    width: 100%;
+    height: auto;
+    display: block;
+    opacity: 1;
+    visibility: visible;
+    border-top-left-radius: 200px;
+    border-top-right-radius: 200px;
+}
+
+/* Điều chỉnh vị trí của tree trong main-content */
+.main-content main {
+    padding-top: 20px;
+    position: relative;
+    z-index: 2;
 }

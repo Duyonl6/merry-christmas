@@ -29,47 +29,71 @@ function initializeLoadingSequence() {
     const loadingVideo = document.getElementById('loadingVideo');
     const progressFill = document.querySelector('.progress-fill');
 
-    startButton.addEventListener('click', function() {
-        startScreen.classList.add('hidden');
+    // Đảm bảo màn hình start hiển thị ban đầu
+    startScreen.style.display = 'flex';
+    loadingScreen.style.display = 'none';
+    mainContent.style.display = 'none';
+
+    startButton.addEventListener('click', function(e) {
+        e.preventDefault();
+        console.log('Start button clicked');
+        
+        // Ẩn màn hình start
+        startScreen.style.display = 'none';
+        
+        // Hiện màn hình loading
+        loadingScreen.style.display = 'flex';
         loadingScreen.classList.remove('hidden');
+        
+        // Thiết lập progress bar
         progressFill.style.width = '0%';
         
+        // Xử lý video loading
         if (loadingVideo) {
-            loadingVideo.play();
+            loadingVideo.play().catch(error => {
+                console.log("Video play error:", error);
+                setTimeout(finishLoading, 4000);
+            });
+            
             setTimeout(() => {
                 progressFill.style.width = '100%';
             }, 100);
             
             loadingVideo.addEventListener('ended', finishLoading);
+        } else {
+            setTimeout(finishLoading, 4000);
         }
-
-        setTimeout(finishLoading, 4000);
     });
 
     function finishLoading() {
-        if (!mainContent.classList.contains('visible')) {
-            loadingScreen.classList.add('hidden');
-            mainContent.classList.remove('hidden');
-            mainContent.classList.add('visible');
-            
-            // Hiển thị các hiệu ứng trong main-content
-            snowfallLayer.classList.remove('snowfallHidden');
-            
-            // Tự động phát nhạc khi loading xong
-            backgroundMusic.play()
-                .then(() => {
-                    audioControl.textContent = '🔊';
-                    audioControl.classList.remove('muted');
-                })
-                .catch(error => console.log("Autoplay prevented:", error));
-            
-            setTimeout(() => {
-                startScreen.remove();
-                loadingScreen.remove();
-            }, 100);
-        }
+        // Ẩn loading screen
+        loadingScreen.style.display = 'none';
+        
+        // Hiện main content
+        mainContent.style.display = 'block';
+        mainContent.classList.remove('hidden');
+        
+        // Hiển thị hiệu ứng
+        snowfallLayer.classList.remove('snowfallHidden');
+        
+        // Phát nhạc
+        backgroundMusic.play()
+            .then(() => {
+                audioControl.textContent = '🔊';
+                audioControl.classList.remove('muted');
+            })
+            .catch(error => console.log("Autoplay prevented:", error));
+        
+        // Xóa các màn hình không cần thiết
+        setTimeout(() => {
+            startScreen.remove();
+            loadingScreen.remove();
+        }, 1000);
     }
 }
+
+// Đảm bảo hàm được gọi khi trang tải xong
+document.addEventListener('DOMContentLoaded', initializeLoadingSequence);
 
 // Utility Functions
 function getRandom(max) {
